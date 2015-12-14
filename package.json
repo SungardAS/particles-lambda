@@ -1,0 +1,26 @@
+{
+  "name": "particles-lambda",
+  "version": "0.0.1",
+  "description": "Particles for Condensation that help build a AWS Lamdba Function",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Sonal Ojha",
+    "email": "sonal.ojha@sungardas.com"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "https://github.com/sungardas/particles-lambda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sungardas/particles-lambda.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "condensation": "^0.4.6",
+    "config": "^1.12.0",
+    "gulp": "^3.9.0"
+  }
+}

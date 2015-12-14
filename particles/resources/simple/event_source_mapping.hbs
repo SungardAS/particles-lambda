@@ -1,0 +1,15 @@
+{
+  "Type" : "AWS::Lambda::EventSourceMapping",
+  "Properties" : {
+    "EventSourceArn" : {
+        "Ref": "{{eventSourceARN}}"
+    },
+    "FunctionName" : {
+        "Fn::GetAtt" : [ "Function" , "Arn" ]
+    },
+    "StartingPosition" : {
+        "Ref": "{{streamStartingPosition}}"
+    }
+  },
+  "DependsOn" : "Function"
+}

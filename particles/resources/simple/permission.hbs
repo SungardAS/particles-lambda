@@ -1,0 +1,21 @@
+{
+  "Type" : "AWS::Lambda::Permission",
+  "Properties" : {
+    "Action" : {
+        "Ref": "{{action}}"
+    },
+    "FunctionName" : {
+        "Fn::GetAtt" : [ "Function" , "Arn" ]
+    },
+    "Principal" : {
+        "Ref": "{{principal}}"
+    },
+    "SourceAccount" : { 
+        "Ref" : "{{sourceAccount}}" 
+    },
+    "SourceArn" : {
+        "Ref" : "{{sourceARN}}"
+    }
+  },
+  "DependsOn" : "Function"
+}

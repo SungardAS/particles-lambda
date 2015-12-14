@@ -1,0 +1,21 @@
+{
+    "Type" : "AWS::S3::Bucket",
+    "Properties" : {
+        "BucketName" : {
+            "Ref": "{{s3BucketName}}"
+        },
+        "NotificationConfiguration" : {
+            "LambdaConfigurations" : [
+                {
+                    "Event": {
+                        "Ref": "{{s3Events}}"
+                    },
+                    "Function": {
+                        "Fn::GetAtt" : [ "Function" , "Arn" ]
+                    }
+                }
+            ]
+        }
+    },
+	"DependsOn" : "Permission"
+}
