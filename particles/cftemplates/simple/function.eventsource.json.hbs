@@ -1,34 +1,26 @@
 {{#layout}}
 
-  {{{parameter 'simple/function/runtime_environments' logicalId="runtimeEnvironment"}}}
-  {{{parameter 'simple/function/role_arn' logicalId="roleARN"}}}
-  {{{parameter 'simple/function/handler' logicalId="functionHandler"}}}
-  {{{parameter 'simple/function/memory_size' logicalId="functionMemorySize"}}}
-  {{{parameter 'simple/function/timeout' logicalId="functionTimeout"}}}
-  {{{parameter 'simple/function/s3_bucket_name' logicalId="s3BucketName"}}}
-  {{{parameter 'simple/function/s3_bucket_key' logicalId="s3BucketKey"}}}
-  {{{parameter 'simple/event_source/event_source_arn' logicalId="eventSourceARN"}}}
-  {{{parameter 'simple/event_source/stream_starting_position' logicalId="streamStartingPosition"}}}
-  
-  {{{
-    resource 'simple/function'
-    logicalId="Function"
-    functionHandler="functionHandler"
-    roleARN="roleARN"
-    functionMemorySize="functionMemorySize"
-    functionTimeout="functionTimeout"
-    runtimeEnvironment="runtimeEnvironment"
-    s3BucketName="s3BucketName"
-    s3BucketKey="s3BucketKey"
-  }}}
-  {{{
-    resource 'simple/event_source_mapping'
-    logicalId="EventSourceMapping"
-    eventSourceARN="eventSourceARN"
-    streamStartingPosition="streamStartingPosition"
-  }}}
+  {{parameter "simple/function/runtime_environments" logicalId="runtimeEnvironment"}}
+  {{parameter "simple/function/handler" logicalId="functionHandler"}}
+  {{parameter "simple/function/memory_size" logicalId="functionMemorySize"}}
+  {{parameter "simple/function/timeout" logicalId="functionTimeout"}}
+  {{parameter "simple/function/execution_role" logicalId="ExecutionRole"}}
 
-  {{{output 'simple/function_id' logicalId="FunctionARN"}}}
+  {{parameter 'simple/event_source/event_source_arn' logicalId="eventSourceARN"}}
+  {{parameter 'simple/event_source/stream_starting_position' logicalId="streamStartingPosition"}}
+
+  {{condition "module:particles-common-core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
+  
+  {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+  {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"
+    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment"}}
+
+  {{
+    resource 'simple/event_source_mapping' logicalId="EventSourceMapping" eventSourceARN="eventSourceARN" streamStartingPosition="streamStartingPosition"}}
+
+  {{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
+  {{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}
+  {{output "role_name" logicalId="ExecutionRoleName" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+  {{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
 
 {{/layout}}
-

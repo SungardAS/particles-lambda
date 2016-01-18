@@ -1,5 +1,8 @@
-"Type" : "String",
-"Description" : "Enter the function within your code that Lambda calls to begin execution",
-"AllowedPattern" : "[^\\s]+",
-"MinLength": "0",
-"MaxLength": "128"
+{{
+  parameter "module:particles-common-core" "base"
+  type="String"
+  minLength="10"
+  maxLength="128"
+  allowedPattern="[^\\s]+"
+  description="Enter the function within your code that Lambda calls to begin execution"
+}}

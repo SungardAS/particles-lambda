@@ -1,0 +1,6 @@
+{{
+  parameter "module:particles-common-core" "base"
+  type="String"
+  description="[optional] If no role arn is provided one will be created with a minimal policy statement for function to run within the deployed to account"
+  allowedPattern="arn:aws:iam::\\d{12}:role\/?[a-zA-Z_0-9+=,.@\\-_\/]+"
+}}

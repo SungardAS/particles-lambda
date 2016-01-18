@@ -1,0 +1,20 @@
+{
+  "Handler": {
+    "Ref": "{{functionHandler}}"
+  },
+  "Role": {{rolePropertyValue}},
+  "Code": {
+    "S3Bucket": "{{s3.bucket}}",
+    "S3Key": "{{assetPath 'helloworld.zip'}}"
+  },
+  "Runtime": {
+    "Ref": "{{runtimeEnvironment}}"
+  },
+  "Timeout": {
+    "Ref": "{{functionTimeout}}"
+  },
+  "MemorySize" : {
+    "Ref": "{{functionMemorySize}}"
+  }
+}
+

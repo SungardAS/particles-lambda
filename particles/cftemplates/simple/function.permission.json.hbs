@@ -1,38 +1,32 @@
 {{#layout}}
 
-  {{{parameter 'simple/function/runtime_environments' logicalId="runtimeEnvironment"}}}
-  {{{parameter 'simple/function/role_arn' logicalId="roleARN"}}}
-  {{{parameter 'simple/function/handler' logicalId="functionHandler"}}}
-  {{{parameter 'simple/function/memory_size' logicalId="functionMemorySize"}}}
-  {{{parameter 'simple/function/timeout' logicalId="functionTimeout"}}}
-  {{{parameter 'simple/function/s3_bucket_name' logicalId="s3BucketName"}}}
-  {{{parameter 'simple/function/s3_bucket_key' logicalId="s3BucketKey"}}}
+  {{parameter "simple/function/runtime_environments" logicalId="runtimeEnvironment"}}
+  {{parameter "simple/function/handler" logicalId="functionHandler"}}
+  {{parameter "simple/function/memory_size" logicalId="functionMemorySize"}}
+  {{parameter "simple/function/timeout" logicalId="functionTimeout"}}
+  {{parameter "simple/function/execution_role" logicalId="ExecutionRole"}}
 
-  {{{parameter 'simple/permission/actions' logicalId="action"}}}
-  {{{parameter 'simple/permission/principal' logicalId="principal"}}}
-  {{{parameter 'simple/permission/source_account' logicalId="sourceAccount"}}}
-  {{{parameter 'simple/permission/source_arn' logicalId="sourceARN"}}}
-  {{{
-    resource 'simple/function'
-    logicalId="Function"
-    functionHandler="functionHandler"
-    roleARN="roleARN"
-    functionMemorySize="functionMemorySize"
-    functionTimeout="functionTimeout"
-    runtimeEnvironment="runtimeEnvironment"
-    s3BucketName="s3BucketName"
-    s3BucketKey="s3BucketKey"
-  }}}
+  {{parameter 'simple/permission/actions' logicalId="action"}}
+  {{parameter 'simple/permission/principal' logicalId="principal"}}
+  {{parameter 'simple/permission/source_account' logicalId="sourceAccount"}}
+  {{parameter 'simple/permission/source_arn' logicalId="sourceARN"}}
 
-  {{{
-    resource 'simple/permission'
-    logicalId="Permission"
-    action="action"
-	principal="principal"
-	sourceAccount="sourceAccount"
-	sourceARN="sourceARN"
-  }}}
+  {{condition "module:particles-common-core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
+  
+  {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+  {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"
+    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment"}}
 
-  {{{output 'simple/function_id' logicalId="FunctionARN"}}}
+  {{
+    resource 'simple/permission' logicalId="Permission" action="action" principal="principal" sourceAccount="sourceAccount"
+	sourceARN="sourceARN"}}
+
+  {{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
+  {{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}
+  {{output "role_name" logicalId="ExecutionRoleName" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+  {{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
 
 {{/layout}}
+
+
+

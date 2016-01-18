@@ -1,4 +1,7 @@
-"Type" : "String",
-"Default" : "python2.7",
-"AllowedValues" : ["java8", "python2.7", "nodejs"],
-"Description" : "Select nodejs, java8, or python2.7. Default is python2.7."
+{{
+  parameter "module:particles-common-core" "base"
+  type="String"
+  default="python2.7"
+  allowedValues='["java8", "python2.7", "nodejs"]'
+  description="Select nodejs, java8, or python2.7. Default is python2.7."
+}}

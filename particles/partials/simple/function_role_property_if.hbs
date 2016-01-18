@@ -1,0 +1,5 @@
+{"Fn::If": [
+  "ExecutionRoleIsEmpty",
+  {"Fn::GetAtt": ["FunctionExecutionRole","Arn"]},
+  {"Ref": "ExecutionRole"}
+]}

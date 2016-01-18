@@ -1,4 +1,7 @@
-"Type" : "String",
-"Default" : "s3.amazonaws.com",
-"AllowedValues" : ["s3.amazonaws.com", "sns.amazonaws.com"],
-"Description" : "Enter s3.amazonaws.com, or sns.amazonaws.com. Default is s3.amazonaws.com"
+{{
+  parameter "module:particles-common-core" "base"
+  type="String"
+  default="s3.amazonaws.com"
+  allowedValues='["s3.amazonaws.com", "sns.amazonaws.com"]'
+  description="Enter s3.amazonaws.com, or sns.amazonaws.com. Default is s3.amazonaws.com"
+}}
