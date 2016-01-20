@@ -1,15 +1,6 @@
-{
-  "Type" : "AWS::Lambda::EventSourceMapping",
-  "Properties" : {
-    "EventSourceArn" : {
-        "Ref": "{{eventSourceARN}}"
-    },
-    "FunctionName" : {
-        "Fn::GetAtt" : [ "Function" , "Arn" ]
-    },
-    "StartingPosition" : {
-        "Ref": "{{streamStartingPosition}}"
-    }
-  },
-  "DependsOn" : "Function"
-}
+{{
+  resource "module:particles-common-core" "base"
+  type="AWS::Lambda::EventSourceMapping"
+  properties=(partial "simple/event_source_properties")
+  dependsOn="Function"
+}}

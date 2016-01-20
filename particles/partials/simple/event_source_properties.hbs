@@ -1,0 +1,11 @@
+{
+  "EventSourceArn" : {
+    "Ref": "{{eventSourceARN}}"
+  },
+  "FunctionName" : {
+    "Fn::GetAtt" : [ "Function" , "Arn" ]
+  },
+  "StartingPosition" : {
+    "Ref": "{{streamStartingPosition}}"
+  }
+}

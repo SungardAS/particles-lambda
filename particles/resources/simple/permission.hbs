@@ -1,21 +1,7 @@
-{
-  "Type" : "AWS::Lambda::Permission",
-  "Properties" : {
-    "Action" : {
-        "Ref": "{{action}}"
-    },
-    "FunctionName" : {
-        "Fn::GetAtt" : [ "Function" , "Arn" ]
-    },
-    "Principal" : {
-        "Ref": "{{principal}}"
-    },
-    "SourceAccount" : { 
-        "Ref" : "{{sourceAccount}}" 
-    },
-    "SourceArn" : {
-        "Ref" : "{{sourceARN}}"
-    }
-  },
-  "DependsOn" : "Function"
-}
+{{
+  resource "module:particles-common-core" "base"
+  type="AWS::Lambda::Permission"
+  properties=(partial "simple/permission_properties")
+  dependsOn="Function"
+}}
+
