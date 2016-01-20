@@ -17,7 +17,8 @@ var config = {
   // Remove 'condensation' from the beginning of the task names
   taskPrefix: '',
 
-  dist: 'dist'
+  dist: 'dist',
+  lambdaSrc: ''
 };
 
 module.exports = config;

@@ -5,7 +5,7 @@
   "Role": {{rolePropertyValue}},
   "Code": {
     "S3Bucket": "{{s3.bucket}}",
-    "S3Key": "{{assetPath 'helloworld.zip'}}"
+    "S3Key": "{{assetPath lambdaSrc}}"
   },
   "Runtime": {
     "Ref": "{{runtimeEnvironment}}"
