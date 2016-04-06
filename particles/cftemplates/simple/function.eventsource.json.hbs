@@ -12,11 +12,12 @@
   {{condition "module:particles-common-core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
   
   {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
-  {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"
-    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment"}}
+  {{resource "simple/function" logicalId="Function" functionHandler="functionHandler" functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment" executionRoleParameterId="ExecutionRole" executionRoleLogicalId="FunctionExecutionRole" }}
+
 
   {{
-    resource 'simple/event_source_mapping' logicalId="EventSourceMapping" eventSourceARN="eventSourceARN" streamStartingPosition="streamStartingPosition"}}
+    resource 'simple/event_source_mapping' logicalId="EventSourceMapping" eventSourceARN="eventSourceARN" streamStartingPosition="streamStartingPosition" functionLogicalId="Function" }}
+
 
   {{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
   {{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}

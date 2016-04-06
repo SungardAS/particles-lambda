@@ -2,5 +2,5 @@
   resource "module:particles-common-core" "base"
   type="AWS::Lambda::EventSourceMapping"
   properties=(partial "simple/event_source_properties")
-  dependsOn="Function"
+  dependsOn="{{functionLogicalId}}"
 }}

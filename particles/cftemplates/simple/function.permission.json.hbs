@@ -15,11 +15,11 @@
   
   {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
   {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"
-    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment"}}
-
+    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment" executionRoleParameterId="ExecutionRole" executionRoleLogicalId="FunctionExecutionRole" }}
   {{
     resource 'simple/permission' logicalId="Permission" action="action" principal="principal" sourceAccount="sourceAccount"
-	sourceARN="sourceARN"}}
+       sourceARN="sourceARN" functionLogicalId="Function"
+   }}
 
   {{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
   {{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}

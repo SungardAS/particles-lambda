@@ -3,7 +3,7 @@
     "Ref": "{{action}}"
   },
   "FunctionName" : {
-    "Fn::GetAtt" : [ "Function" , "Arn" ]
+    "Fn::GetAtt" : [ "{{functionLogicalId}}" , "Arn" ]
   },
   "Principal" : {
     "Ref": "{{principal}}"
