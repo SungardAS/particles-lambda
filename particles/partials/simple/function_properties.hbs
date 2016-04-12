@@ -5,11 +5,9 @@
   "Role": {{rolePropertyValue}},
   "Code": {
     "S3Bucket": "{{s3.bucket}}",
-    "S3Key": "{{assetPath lambdaSrc}}"
+    "S3Key": "{{s3Key}}"
   },
-  "Runtime": {
-    "Ref": "{{runtimeEnvironment}}"
-  },
+  "Runtime": {{helper "module:particles-common-core" "propertyValue" runtime}},
   "Timeout": {
     "Ref": "{{functionTimeout}}"
   },
