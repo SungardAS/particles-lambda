@@ -1,30 +1,18 @@
 {{#layout}}
 
-  {{parameter "simple/function/runtime_environments" logicalId="runtimeEnvironment"}}
-  {{parameter "simple/function/handler" logicalId="functionHandler"}}
-  {{parameter "simple/function/memory_size" logicalId="functionMemorySize"}}
-  {{parameter "simple/function/timeout" logicalId="functionTimeout"}}
-  {{parameter "simple/function/execution_role" logicalId="ExecutionRole"}}
+  {{!-- Function --}}
+  {{resource "function/execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+  {{set "function" executionRole=(concat '{"Fn::If": ["' ExecutionRoleIsEmpty '",' (ref "FunctionExecutionRole") ',' (ref "ExecutionRole") ']}')}}
 
   {{parameter 'simple/permission/actions' logicalId="action"}}
   {{parameter 'simple/permission/principal' logicalId="principal"}}
   {{parameter 'simple/permission/source_account' logicalId="sourceAccount"}}
   {{parameter 'simple/permission/source_arn' logicalId="sourceARN"}}
 
-  {{condition "m:core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
-  
-  {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
-  {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"
-    functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment" executionRoleParameterId="ExecutionRole" executionRoleLogicalId="FunctionExecutionRole" }}
   {{
     resource 'simple/permission' logicalId="Permission" action="action" principal="principal" sourceAccount="sourceAccount"
        sourceARN="sourceARN" functionLogicalId="Function"
    }}
-
-  {{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
-  {{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}
-  {{output "role_name" logicalId="ExecutionRoleName" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
-  {{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
 
 {{/layout}}
 

@@ -1,0 +1,11 @@
+{{#layout}}
+
+  {{
+    resource "function/execution_role"
+    logicalId="FunctionExecutionRole"
+    condition="ExecutionRoleIsEmpty"
+  }}
+  {{set "function" executionRole=(concat '{"Fn::If": ["' ExecutionRoleIsEmpty '",' (ref "FunctionExecutionRole") ',' (ref "ExecutionRole") ']}')}}
+
+{{/layout}}
+

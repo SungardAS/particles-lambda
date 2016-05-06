@@ -1,0 +1,26 @@
+{{parameter "function/runtime" logicalId="Runtime"}}
+{{parameter "function/handler" logicalId="Handler"}}
+{{parameter "function/memory_size" logicalId="MemorySize"}}
+{{parameter "function/timeout" logicalId="Timeout"}}
+{{parameter "function/execution_role" logicalId="ExecutionRole"}}
+
+{{
+  condition "m:core" "is_empty"
+  logicalId="ExecutionRoleIsEmpty"
+  parameterLogicalId="ExecutionRole"
+}}
+
+{{
+  resource "function"
+  logicalId="Function"
+  handler=(ref "Handler")
+  memorySize=(ref "MemorySize")
+  timeout=(ref "Timeout")
+  runtime=(ref "Runtime")
+  role=executionRole
+}}
+
+{{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
+{{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}
+{{output "role_name" logicalId="ExecutionRoleName" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+{{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}

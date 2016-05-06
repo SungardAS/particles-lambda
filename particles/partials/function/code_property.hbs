@@ -1,0 +1,10 @@
+{
+  {{#if s3Bucket}}
+  "S3Bucket": {{s3Bucket}},
+  "S3Key": {{s3Key}}
+  {{#if s3ObjectVersion}},"S3ObjectVersion": {{s3ObjectVersion}}{{/if}}
+  {{/if}}
+  {{if zipFile}}
+    "ZipFile": String
+  {{/if}}
+}

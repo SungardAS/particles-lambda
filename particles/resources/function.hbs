@@ -1,0 +1,14 @@
+{{#resource "m:core" "base" type="AWS::Lambda::Function"}}
+"Properties": {
+  "Handler": {{helper "m:core" "propertyValue" handler}},
+  "Role": {{helper "m:core" "propertyValue" role}},
+  "Runtime": {{helper "m:core" "propertyValue" runtime}},
+  "Code": {{helper "m:core" "propertyValue" code}}
+  {{#if description}},"Description": {{helper "m:core" "propertyValue" description}}{{/if}}
+  {{#if functionName}},"FunctionName": {{helper "m:core" "propertyValue" functionName}}{{/if}}
+  {{#if timeout}},"Timeout": {{helper "m:core" "propertyValue" timeout forceNumber=true}}{{/if}}
+  {{#if memorySize}},"MemorySize": {{helper "m:core" "propertyValue" memorySize}}{{/if}}
+  {{#if vpcConfig}},"VpcConfig": {{helper "m:core" "propertyValue" vpcConfig}}{{/if}}
+}
+{{/resource}}
+

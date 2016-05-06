@@ -1,0 +1,12 @@
+{
+  "LambdaFunction": {
+    "Type": "AWS::Lambda::Function",
+    "Properties": {
+      "Code": "",
+      "Handler": "",
+      "Role": "",
+      "Runtime": "",
+      "Timeout": 30
+    }
+  }
+}
