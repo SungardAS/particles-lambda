@@ -1,8 +1,8 @@
 {
   "name": "particles-lambda",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "publishConfig": {
-    "tag": "latest"
+    "tag": "beta"
   },
   "description": "Particles for Condensation that help build a AWS Lamdba Function",
   "scripts": {
