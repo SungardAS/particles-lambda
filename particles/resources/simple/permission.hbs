@@ -2,6 +2,6 @@
   resource "m:core" "base"
   type="AWS::Lambda::Permission"
   properties=(partial "simple/permission_properties")
-  dependsOn="{{functionLogicalId}}"
+  dependsOn=functionLogicalId
 }}
 
