@@ -3,6 +3,7 @@
 [![condensation][condensation-image]][condensation-url]
 
 [![NPM][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
 [![Gitter][gitter-image]][gitter-url]
 
 
@@ -33,8 +34,5 @@ A stack that will create a AWS Lambda function and associates a policy statement
 [npm-url]: https://npmjs.org/package/particles-lambda
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/SungardAS/condensation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-
-
-
-
-
+[travis-image]: https://travis-ci.org/SungardAS/particles-lambda.svg?branch=develop
+[travis-url]: https://travis-ci.org/SungardAS/particles-lambda
