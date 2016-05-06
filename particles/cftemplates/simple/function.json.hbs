@@ -6,7 +6,7 @@
   {{parameter "simple/function/timeout" logicalId="functionTimeout"}}
   {{parameter "simple/function/execution_role" logicalId="ExecutionRole"}}
 
-  {{condition "module:particles-common-core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
+  {{condition "m:core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
   
   {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty" }}
   {{resource "simple/function" logicalId="Function" functionHandler="functionHandler"

@@ -1,5 +1,5 @@
 {{
-  resource "module:particles-common-core" "base"
+  resource "m:core" "base"
   type="AWS::Lambda::Permission"
   properties=(partial "simple/permission_properties")
   dependsOn="{{functionLogicalId}}"

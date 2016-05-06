@@ -1,9 +1,12 @@
 {
   "name": "particles-lambda",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "tag": "latest"
+  },
   "description": "Particles for Condensation that help build a AWS Lamdba Function",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": {
     "name": "Sonal Ojha",
@@ -18,15 +21,23 @@
     "url": "https://github.com/sungardas/particles-lambda.git"
   },
   "keywords": [
-    "condensation-particles"
+    "condensation-particles",
+    "lambda",
+    "aws",
+    "cloudformation"
   ],
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
-    "condensation": "^0.4.8",
-    "config": "^1.16.0",
-    "gulp": "^3.9.0",
-    "gulp-zip": "^3.0.2",
-    "particles-common-core": "^0.3.4",
-    "vinyl-fs": "^2.1.1"
+    "condensation": "^0.5.3",
+    "config": "^1.20.1",
+    "git-rev-sync": "^1.6.0",
+    "gulp": "^3.9.1",
+    "gulp-zip": "^3.2.0",
+    "particles-core": "^0.4.1",
+    "vinyl-fs": "^2.4.3"
+  },
+  "devDependencies": {
+    "condensation-particle-tests": "^0.5.1",
+    "mocha": "^2.4.5"
   }
 }

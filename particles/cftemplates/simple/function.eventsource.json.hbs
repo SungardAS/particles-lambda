@@ -9,7 +9,7 @@
   {{parameter 'simple/event_source/event_source_arn' logicalId="eventSourceARN"}}
   {{parameter 'simple/event_source/stream_starting_position' logicalId="streamStartingPosition"}}
 
-  {{condition "module:particles-common-core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
+  {{condition "m:core" "is_empty" logicalId="ExecutionRoleIsEmpty" parameterLogicalId="ExecutionRole"}}
   
   {{resource "simple/function_execution_role" logicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
   {{resource "simple/function" logicalId="Function" functionHandler="functionHandler" functionMemorySize="functionMemorySize" functionTimeout="functionTimeout" runtimeEnvironment="runtimeEnvironment" executionRoleParameterId="ExecutionRole" executionRoleLogicalId="FunctionExecutionRole" }}
