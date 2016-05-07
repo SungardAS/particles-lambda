@@ -1,13 +1,30 @@
 {{#layout}}
 
+
+  {{!-- Execution Role --}}
+  {{parameter "function/execution_role" logicalId="ExecutionRole"}}
+  {{
+    condition "m:core" "is_empty"
+    logicalId="ExecutionRoleIsEmpty"
+    parameterLogicalId="ExecutionRole"
+  }}
+
   {{
     resource "function/execution_role"
     logicalId="FunctionExecutionRole"
     condition="ExecutionRoleIsEmpty"
   }}
 
+  {{!-- Lambda Function --}}
+  {{parameter 'function/s3_bucket' logicalId="S3Bucket"}}
+  {{parameter 'function/s3_key' logicalId="S3Key"}}
   {{
     set "function"
+    code=(
+      partial "function/s3_code"
+      s3Bucket=(ref "S3Bucket")
+      s3Key=(ref "S3Key")
+    )
     executionRole=(
       partial "m:core" "fn_if"
       conditionId="ExecutionRoleIsEmpty"

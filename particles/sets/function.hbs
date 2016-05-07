@@ -1,14 +1,13 @@
-{{parameter "function/runtime" logicalId="Runtime"}}
-{{parameter "function/handler" logicalId="Handler"}}
-{{parameter "function/memory_size" logicalId="MemorySize"}}
-{{parameter "function/timeout" logicalId="Timeout"}}
-{{parameter "function/execution_role" logicalId="ExecutionRole"}}
-
-{{
-  condition "m:core" "is_empty"
-  logicalId="ExecutionRoleIsEmpty"
-  parameterLogicalId="ExecutionRole"
-}}
+---
+runtimeDefault: "python2.7"
+handlerDefault: "index.handler"
+memorySizeDefault: 128
+timeoutDefault: 3
+---
+{{parameter "function/runtime" logicalId="Runtime" default=runtimeDefault}}
+{{parameter "function/handler" logicalId="Handler" default=handlerDefault}}
+{{parameter "function/memory_size" logicalId="MemorySize" default=memorySizeDefault}}
+{{parameter "function/timeout" logicalId="Timeout" default=timeoutDefault}}
 
 {{
   resource "function"
