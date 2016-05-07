@@ -5,7 +5,16 @@
     logicalId="FunctionExecutionRole"
     condition="ExecutionRoleIsEmpty"
   }}
-  {{set "function" executionRole=(concat '{"Fn::If": ["' ExecutionRoleIsEmpty '",' (ref "FunctionExecutionRole") ',' (ref "ExecutionRole") ']}')}}
+
+  {{
+    set "function"
+    executionRole=(
+      partial "m:core" "fn_if"
+      conditionId="ExecutionRoleIsEmpty"
+      trueValue=(ref "FunctionExecutionRole")
+      falseValue=(ref "ExecutionRole")
+    )
+  }}
 
 {{/layout}}
 

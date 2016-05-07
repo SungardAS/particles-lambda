@@ -1,0 +1,22 @@
+{{#layout}}
+
+  {{parameter 'permission/actions' logicalId="Action"}}
+  {{parameter 'permission/principal' logicalId="Principal"}}
+  {{parameter 'permission/source_account' logicalId="SourceAccount"}}
+  {{parameter 'permission/source_arn' logicalId="SourceArn"}}
+  {{parameter 'permission/function_arn' logicalId="FunctionName"}}
+
+  {{
+    resource 'permission'
+    logicalId="Permission"
+    action=(ref "Action")
+    principal=(ref "Principal")
+    sourceAccount=(ref "SourceAccount")
+    sourceARN=(ref "SourceArn")
+    functionName=(ref "FunctionName")
+   }}
+
+{{/layout}}
+
+
+

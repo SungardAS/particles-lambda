@@ -1,0 +1,15 @@
+{{#layout}}
+
+  {{parameter 'event_source_mapping/event_source_arn' logicalId="eventSourceArn"}}
+  {{parameter 'event_source_mapping/stream_starting_position' logicalId="streamStartingPosition"}}
+
+  {{
+    resource 'event_source_mapping'
+    logicalId="EventSourceMapping"
+    eventSourceARN="EventSourceArn"
+    streamStartingPosition="streamStartingPosition"
+    functionLogicalId="Function"
+  }}
+
+
+{{/layout}}

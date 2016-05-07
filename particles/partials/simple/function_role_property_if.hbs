@@ -1,5 +1,0 @@
-{"Fn::If": [
-  "ExecutionRoleIsEmpty",
-  {"Fn::GetAtt": ["{{executionRoleLogicalId}}","Arn"]},
-  {"Ref": "{{executionRoleParameterId}}"}
-]}

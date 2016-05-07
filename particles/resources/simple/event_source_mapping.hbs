@@ -1,6 +1,0 @@
-{{
-  resource "m:core" "base"
-  type="AWS::Lambda::EventSourceMapping"
-  properties=(partial "simple/event_source_properties")
-  dependsOn=functionLogicalId
-}}
