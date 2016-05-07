@@ -6,6 +6,12 @@ node_js:
 - 4
 - '0.12'
 - iojs
+matrix:
+  include:
+  - node_js: 6
+    env: DEPLOY=true
+after_success: if [[ $DEPLOY == "true" ]] ; then ./node_modules/.bin/gulp condensation:deploy
+  ; else echo "no deploy" ; fi
 deploy:
   provider: npm
   email: as.us.labs@sungardas.com
