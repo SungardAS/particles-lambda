@@ -1,0 +1,5 @@
+{{
+  resource "m:core" "base"
+  type="AWS::Lambda::EventSourceMapping"
+  properties=(partial "event_source_mapping_properties")
+}}

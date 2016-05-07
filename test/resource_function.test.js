@@ -3,7 +3,7 @@ var CondensationTests = require("condensation-particle-tests");
 
 var cTests = new CondensationTests();
 
-describe.only("resources", function() {
+describe("resources", function() {
   describe("function", function() {
 
     it("creates an empty function", function() {

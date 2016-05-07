@@ -1,0 +1,7 @@
+{
+  "EventSourceArn": {{helper "m:core" "propertyValue" eventSourceArn}},
+  "FunctionName": {{helper "m:core" "propertyValue" functionName}},
+  "StartingPosition": {{helper "m:core" "propertyValue" startingPosition}}
+  {{#if batchSize}},"BatchSize": {{helper "m:core" "propertyValue" batchSize}}{{/if}}
+  {{#if enabled}},"Enabled": {{helper "m:core" "propertyValue" enabled}}{{/if}}
+}
