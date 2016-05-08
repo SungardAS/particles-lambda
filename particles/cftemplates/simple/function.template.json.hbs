@@ -14,21 +14,24 @@
     logicalId="FunctionExecutionRole"
     condition="ExecutionRoleIsEmpty"
   }}
+  {{set "execution_role/all_outputs" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
 
-  {{output "role_name" logicalId="ExecutionRoleName" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
-  {{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
 
   {{!-- Lambda Function --}}
-  {{parameter 'function/s3_bucket' logicalId="S3Bucket"}}
-  {{parameter 'function/s3_key' logicalId="S3Key"}}
-  {{parameter 'function/s3_object_version' logicalId="S3ObjectVersion"}}
+  {{set "function/all_parameters"}}
   {{
     condition "m:core" "is_empty"
     logicalId="S3ObjectVersionIsEmpty"
     parameterLogicalId="ExecutionRole"
   }}
+
   {{
-    set "function"
+    resource "function"
+    logicalId="Function"
+    handler=(ref "Handler")
+    memorySize=(ref "MemorySize")
+    timeout=(ref "Timeout")
+    runtime=(ref "Runtime")
     code=(
       partial "function/s3_code"
       s3Bucket=(ref "S3Bucket")
@@ -40,12 +43,18 @@
         falseValue=(ref "S3ObjectVersion")
       )
     )
-    executionRole=(
+    role=(
       partial "m:core" "fn_if"
       conditionId=(scopeId "ExecutionRoleIsEmpty")
       trueValue=(ref "FunctionExecutionRole")
       falseValue=(ref "ExecutionRole")
     )
+  }}
+
+  {{set "function/all_outputs" functionLogicalId=(scopeId "Function")}}
+
+  {{
+    set "function"
   }}
 
 {{/layout}}
