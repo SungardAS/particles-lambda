@@ -14,24 +14,44 @@
     logicalId="FunctionExecutionRole"
     condition="ExecutionRoleIsEmpty"
   }}
+  {{set "execution_role/all_outputs" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
+
 
   {{!-- Lambda Function --}}
-  {{parameter 'function/s3_bucket' logicalId="S3Bucket"}}
-  {{parameter 'function/s3_key' logicalId="S3Key"}}
+  {{set "function/all_parameters"}}
   {{
-    set "function"
+    condition "m:core" "is_empty"
+    logicalId="S3ObjectVersionIsEmpty"
+    parameterLogicalId="ExecutionRole"
+  }}
+
+  {{
+    resource "function"
+    logicalId="Function"
+    handler=(ref "Handler")
+    memorySize=(ref "MemorySize")
+    timeout=(ref "Timeout")
+    runtime=(ref "Runtime")
     code=(
       partial "function/s3_code"
       s3Bucket=(ref "S3Bucket")
       s3Key=(ref "S3Key")
+      s3ObjectVersion=(
+        partial "m:core" "fn_if"
+        conditionId=(scopeId "S3ObjectVersionIsEmpty")
+        trueValue=(ref "AWS::NoValue")
+        falseValue=(ref "S3ObjectVersion")
+      )
     )
-    executionRole=(
+    role=(
       partial "m:core" "fn_if"
-      conditionId="ExecutionRoleIsEmpty"
+      conditionId=(scopeId "ExecutionRoleIsEmpty")
       trueValue=(ref "FunctionExecutionRole")
       falseValue=(ref "ExecutionRole")
     )
   }}
+
+  {{set "function/all_outputs" functionLogicalId=(scopeId "Function")}}
 
 {{/layout}}
 
