@@ -15,19 +15,34 @@
     condition="ExecutionRoleIsEmpty"
   }}
 
+  {{output "role_name" logicalId="ExecutionRoleName" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
+  {{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId=(scopeId "FunctionExecutionRole") condition="ExecutionRoleIsEmpty"}}
+
   {{!-- Lambda Function --}}
   {{parameter 'function/s3_bucket' logicalId="S3Bucket"}}
   {{parameter 'function/s3_key' logicalId="S3Key"}}
+  {{parameter 'function/s3_object_version' logicalId="S3ObjectVersion"}}
+  {{
+    condition "m:core" "is_empty"
+    logicalId="S3ObjectVersionIsEmpty"
+    parameterLogicalId="ExecutionRole"
+  }}
   {{
     set "function"
     code=(
       partial "function/s3_code"
       s3Bucket=(ref "S3Bucket")
       s3Key=(ref "S3Key")
+      s3ObjectVersion=(
+        partial "m:core" "fn_if"
+        conditionId=(scopeId "S3ObjectVersionIsEmpty")
+        trueValue=(ref "AWS::NoValue")
+        falseValue=(ref "S3ObjectVersion")
+      )
     )
     executionRole=(
       partial "m:core" "fn_if"
-      conditionId="ExecutionRoleIsEmpty"
+      conditionId=(scopeId "ExecutionRoleIsEmpty")
       trueValue=(ref "FunctionExecutionRole")
       falseValue=(ref "ExecutionRole")
     )

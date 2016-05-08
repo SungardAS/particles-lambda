@@ -19,7 +19,4 @@ timeoutDefault: 3
   role=executionRole
 }}
 
-{{output "function_name" logicalId="FunctionName" functionLogicalId="Function"}}
-{{output "function_arn" logicalId="FunctionArn" functionLogicalId="Function"}}
-{{output "role_name" logicalId="ExecutionRoleName" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
-{{output "role_arn" logicalId="ExecutionRoleArn" roleLogicalId="FunctionExecutionRole" condition="ExecutionRoleIsEmpty"}}
+{{set "function/all_outputs" functionLogicalId=(scopeId "Function")}}
