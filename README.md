@@ -15,17 +15,18 @@
 
 ### cftemplates
 
+#### event\_source
+
+A stack that will map an existing Lambda Function to an Amazon Kensis or Amazon DynamoDB stream.
+
 #### function
 
-A stack that will create a AWS Lambda function.The stack points to a file in S3 bucket for the source code.
+A stack that will create a AWS Lambda function.  The stack requires the source to exist as a zip file on S3.
 
-#### function.eventsource
 
-A stack that will create a AWS Lambda function and maps it to an Amazon Kensis stream or Amazon DynamoDB stream.
+#### permission
 
-#### function.permission
-
-A stack that will create a AWS Lambda function and associates a policy statement with the function's access policy.
+A stack that will associate a policy statement with an existing Lambda Function.
 
 
 [condensation-image]: https://raw.githubusercontent.com/SungardAS/condensation/master/docs/images/condensation_logo.png
