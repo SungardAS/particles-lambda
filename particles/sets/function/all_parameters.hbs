@@ -6,7 +6,7 @@ timeoutDefault: 3
 ---
 {{parameter 'function/s3_bucket' logicalId="S3Bucket"}}
 {{parameter 'function/s3_key' logicalId="S3Key"}}
-{{parameter 'function/s3_object_version' logicalId="S3ObjectVersion"}}
+{{parameter 'function/s3_object_version' logicalId="S3ObjectVersion" optional=true}}
 {{parameter "function/runtime" logicalId="Runtime" default=runtimeDefault}}
 {{parameter "function/handler" logicalId="Handler" default=handlerDefault}}
 {{parameter "function/memory_size" logicalId="MemorySize" default=memorySizeDefault}}

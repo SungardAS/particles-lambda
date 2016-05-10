@@ -2,7 +2,7 @@
 
 
   {{!-- Execution Role --}}
-  {{parameter "function/execution_role" logicalId="ExecutionRole"}}
+  {{parameter "function/execution_role" logicalId="ExecutionRole" optional=true}}
   {{
     condition "m:core" "is_empty"
     logicalId="ExecutionRoleIsEmpty"

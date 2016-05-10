@@ -1,7 +1,4 @@
 {{
-  parameter "m:core" "base"
-  type="String"
-  description="[optional] If no role arn is provided one will be created with a minimal policy statement"
-  allowedPattern="arn:aws:iam::\\d{12}:role\/?[a-zA-Z_0-9+=,.@\\-_\/]+"
-  constraintDescription="Role ARN Format unrecognized"
+  parameter "m:core" "arn"
+  description="The ARN of an existing IAM Role"
 }}
