@@ -32,9 +32,7 @@
     "config": "^1.20.1",
     "git-rev-sync": "^1.6.0",
     "gulp": "^3.9.1",
-    "gulp-zip": "^3.2.0",
-    "particles-core": "^0.4.2-rc2",
-    "vinyl-fs": "^2.4.3"
+    "particles-core": "^0.4.2"
   },
   "devDependencies": {
     "condensation-particle-tests": "^0.5.1",
