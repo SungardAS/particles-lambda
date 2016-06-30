@@ -12,7 +12,7 @@
     "PolicyName": "root",
     "PolicyDocument": {
       "Version": "2012-10-17",
-      "Statement": {{#if policyStatement}}{{policyStatement}}{{else}}{{partial "basic_execution_role_policy_statement"}}{{/if}}
+      "Statement": {{#if policyStatement}}{{policyStatement}}{{else}}{{partial "basic_execution_role_policy"}}{{/if}}
     }
   }]
 }
